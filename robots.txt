@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nagotowo.pl/sitemap.xml
+Sitemap: https://nagotowobialystok.pl/sitemap.xml

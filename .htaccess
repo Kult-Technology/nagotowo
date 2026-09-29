@@ -3,6 +3,10 @@
 # Brak listowania katalogów
 Options -Indexes
 
+# Pliki i katalogi zaczynające się od kropki (np. .git, .idea) nie są dostępne z przeglądarki.
+# .well-known zostaje otwarte, bo korzysta z niego odnawianie certyfikatu SSL.
+RedirectMatch 404 /\.(?!well-known/)
+
 # Typy plików
 AddType image/webp .webp
 AddType font/woff2 .woff2
@@ -22,8 +26,11 @@ AddType font/woff2 .woff2
   ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
-# Przekierowanie na https. Odkomentuj trzy linie poniżej dopiero po włączeniu certyfikatu SSL,
-# chyba że hosting ma w panelu opcję "wymuś SSL" (wtedy użyj jej i zostaw to bez zmian).
-# RewriteEngine On
-# RewriteCond %{HTTPS} !=on
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Zawsze https://nagotowobialystok.pl: wejścia przez http i przez www przekierowują na adres główny.
+# Certyfikat SSL na hostingu OVH jest włączony dla obu adresów (z www i bez).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://nagotowobialystok.pl%{REQUEST_URI} [L,R=301]
+</IfModule>
