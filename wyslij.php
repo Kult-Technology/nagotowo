@@ -10,14 +10,14 @@
 // Adres, na który przychodzą zgłoszenia.
 const ODBIORCA = 'kontakt@nagotowobialystok.pl';
 
-// Adres nadawcy. Musi być w domenie podpiętej do hostingu OVH (nagotowobialystok.pl),
-// inaczej OVH odrzuci wysyłkę albo maile trafią do spamu.
+// Adres nadawcy. Musi być w domenie nagotowobialystok.pl, której poczta jest na hostingu LH.pl
+// (SPF, DKIM i DMARC domeny wskazują na LH.pl). Inny adres nadawcy = maile odrzucone albo w spamie.
 const NADAWCA = 'kontakt@nagotowobialystok.pl';
 const NADAWCA_NAZWA = 'Formularz NA GOTOWO';
 
-// SMTP (opcjonalnie). Zostaw SMTP_HOST pusty, żeby wysyłać funkcją mail() hostingu OVH
-// (darmowy hosting: do 10 maili na godzinę, nadmiar czeka w kolejce i wychodzi później).
-// Wysyłka przez skrzynkę Zimbra: host 'smtp.mail.ovh.net', port 465, login NADAWCA i hasło tej skrzynki.
+// SMTP (opcjonalnie). Zostaw SMTP_HOST pusty, żeby wysyłać funkcją mail() hostingu LH.pl (tak jest teraz).
+// Wysyłka przez skrzynkę kontakt@ w LH.pl: adres serwera SMTP i port znajdziesz w panelu LH.pl
+// w ustawieniach poczty; login to NADAWCA, hasło to hasło tej skrzynki.
 const SMTP_HOST = '';
 const SMTP_PORT = 465;          // 465 = SSL, 587 = STARTTLS
 const SMTP_USER = '';
@@ -29,7 +29,7 @@ const POTWIERDZENIE = true;
 // Limity
 const MAX_ZDJEC = 10;     // zdjęcia w zgłoszeniu zmiany
 const MAX_RZUTOW = 3;     // pliki z rzutem w zapytaniu o wycenę
-const MAX_ROZMIAR = 6 * 1024 * 1024;    // łącznie, w bajtach; cały mail musi się zmieścić w limicie 10 MB poczty OVH
+const MAX_ROZMIAR = 6 * 1024 * 1024;    // łącznie, w bajtach; po zakodowaniu załączników mail jest ok. 1/3 większy (ok. 8 MB)
 
 /* ===== KONIEC USTAWIEŃ ===== */
 

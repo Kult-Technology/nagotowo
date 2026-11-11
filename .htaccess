@@ -27,7 +27,7 @@ AddType font/woff2 .woff2
 </IfModule>
 
 # Zawsze https://nagotowobialystok.pl: wejścia przez http i przez www przekierowują na adres główny.
-# Certyfikat SSL na hostingu OVH jest włączony dla obu adresów (z www i bez).
+# Certyfikat SSL (Let's Encrypt) na hostingu LH.pl obejmuje oba adresy (z www i bez).
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTPS} off [OR]
